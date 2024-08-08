@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.openinapp.presentation.main.MainScreen
+import com.openinapp.presentation.main.links.LinksScreen
 
 sealed class Screen(val route: String) {
     data object MainScreen : Screen(route = "main_screen")
@@ -21,12 +23,7 @@ fun NavigationHost(navController: NavHostController) {
         startDestination = Screen.MainScreen.route
     ) {
         composable(route = Screen.MainScreen.route) {
-            Box(
-                modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("Hi OpenInApp")
-            }
+            MainScreen()
         }
     }
 }

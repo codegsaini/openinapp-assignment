@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OpenInApp</string>
+    <string name="links_route_label">Links</string>
+    <string name="courses_route_label">Courses</string>
+    <string name="campaigns_route_label">Campaigns</string>
+    <string name="profile_route_label">Profile</string>
 </resources>

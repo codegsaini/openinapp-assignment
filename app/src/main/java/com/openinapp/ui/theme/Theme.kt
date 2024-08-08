@@ -12,18 +12,19 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
+    primary = Blue,
     secondary = PurpleGrey80,
     tertiary = Pink80
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
+    primary = Blue,
     secondary = PurpleGrey40,
     tertiary = Pink40
 
@@ -59,9 +60,10 @@ fun OpenInAppTheme(
         SideEffect {
             val window =(view.context as Activity).window
             WindowCompat.getInsetsController(window, view).apply {
-                this.isAppearanceLightStatusBars = !darkTheme
+                this.isAppearanceLightStatusBars = false
                 this.isAppearanceLightNavigationBars = !darkTheme
             }
+            window.statusBarColor = colorScheme.primary.toArgb()
         }
     }
 
