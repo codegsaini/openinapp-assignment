@@ -1,5 +1,6 @@
 package com.openinapp.presentation.main.links
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,8 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -23,11 +26,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.openinapp.R
+import com.openinapp.presentation.main.links._components.GreetingView
+import com.openinapp.presentation.main.links._components.TopBar
+import com.openinapp.ui.theme.Figtree
 
 @Composable
 fun LinksScreen() {
@@ -37,46 +45,11 @@ fun LinksScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
+            .background(colorResource(R.color.background_secondary))
             .verticalScroll(scrollState)
     ) {
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.primary)
-                .padding(top = 40.dp)
-                .padding(horizontal = 16.dp)
-                .padding(bottom = 44.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = "Dashboard",
-                fontWeight = FontWeight(600),
-                fontSize = 24.sp,
-                color = MaterialTheme.colorScheme.onPrimary
-            )
-
-            IconButton(
-                modifier = Modifier
-                    .size(40.dp)
-                    .background(
-                        color = Color(0xFF2A80FF),
-                        shape = RoundedCornerShape(10.dp)
-                    ),
-                onClick = {}
-            ) {
-                Icon(
-                    modifier = Modifier
-                        .width(24.dp)
-                        .aspectRatio(1f),
-                    painter = painterResource(R.drawable.wrench),
-                    contentDescription = "Settings icon",
-                    tint = Color.White
-                )
-            }
-        }
+        TopBar()
 
         Column(
             modifier = Modifier
@@ -84,13 +57,37 @@ fun LinksScreen() {
                 .height(1000.dp)
                 .offset(y = (-24).dp)
                 .background(
-                    color = Color(0xFFF5F5F5),
+                    color = colorResource(R.color.background_secondary),
                     shape = RoundedCornerShape(
                         topStart = 20.dp,
                         topEnd = 20.dp
                     )
                 )
         ) {
+
+            GreetingView()
+
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    Text(text = "Overview")
+                    Row {
+                        Text(text = "22 Aug - 23 Sept")
+                        Icon(
+                            imageVector = Icons.Default.CheckCircle,
+                            contentDescription = null
+                        )
+                    }
+                }
+            }
 
         }
 
