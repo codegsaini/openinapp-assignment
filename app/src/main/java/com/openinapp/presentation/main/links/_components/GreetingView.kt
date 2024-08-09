@@ -34,7 +34,8 @@ fun GreetingView() {
             text = "Good Morning",
             color = colorResource(R.color.text_secondary),
             fontSize = 16.sp,
-            lineHeight = 24.sp
+            lineHeight = 24.sp,
+            letterSpacing = 0.sp
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -47,7 +48,8 @@ fun GreetingView() {
                 fontSize = 24.sp,
                 fontWeight = FontWeight.SemiBold,
                 fontFamily = FontFamily.Figtree,
-                lineHeight = 32.sp
+                lineHeight = 32.sp,
+                letterSpacing = 0.sp
             )
             Image(
                 modifier = Modifier.width(28.dp).aspectRatio(1f),
