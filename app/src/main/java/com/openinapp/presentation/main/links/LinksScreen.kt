@@ -18,6 +18,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -40,6 +41,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.openinapp.R
+import com.openinapp.presentation.main.links._components.CardButton
 import com.openinapp.presentation.main.links._components.GreetingView
 import com.openinapp.presentation.main.links._components.InfoCardsContainer
 import com.openinapp.presentation.main.links._components.LinkStatsListView
@@ -65,7 +67,6 @@ fun LinksScreen() {
             .fillMaxSize()
             .background(colorResource(R.color.background_secondary))
             .verticalScroll(rootContainerScrollState)
-            .padding(bottom = 20.dp)
     ) {
 
         TopBar(
@@ -156,7 +157,31 @@ fun LinksScreen() {
                     .height(48.dp),
                 iconResourceId = R.drawable.link,
                 title = "View all Links",
-                onClick = {}
+                onClick = { }
+            )
+
+            CardButton(
+                modifier = Modifier
+                    .padding(top = 40.dp)
+                    .padding(horizontal = 16.dp)
+                    .fillMaxWidth()
+                    .border(2.dp, colorResource(R.color.light_green), RoundedCornerShape(10.dp))
+                    .background(colorResource(R.color.light_green), RoundedCornerShape(10.dp))
+                    .padding(vertical = 20.dp, horizontal = 12.dp),
+                iconResourceId = R.drawable.wp,
+                title = "Chat with us",
+                onClick = { }
+            )
+            CardButton(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .border(2.dp, colorResource(R.color.light_green), RoundedCornerShape(10.dp))
+                    .background(colorResource(R.color.light_green), RoundedCornerShape(10.dp))
+                    .padding(vertical = 20.dp, horizontal = 12.dp),
+                iconResourceId = R.drawable.faq,
+                title = "Frequently Asked Questions",
+                onClick = { }
             )
         }
 
