@@ -3,8 +3,10 @@ package com.openinapp.presentation.main.links
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -14,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -31,21 +34,30 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalClipboardManager
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.openinapp.R
+import com.openinapp.presentation.main.links._components.AlertPopup
 import com.openinapp.presentation.main.links._components.CardButton
 import com.openinapp.presentation.main.links._components.GreetingView
 import com.openinapp.presentation.main.links._components.InfoCardsContainer
 import com.openinapp.presentation.main.links._components.LinkStatsListView
 import com.openinapp.presentation.main.links._components.LinkStatsTabView
+import com.openinapp.presentation.main.links._components.LoadingWidget
 import com.openinapp.presentation.main.links._components.OverviewChart
 import com.openinapp.presentation.main.links._components.Tab
 import com.openinapp.presentation.main.links._components.TopBar
@@ -55,12 +67,27 @@ import dashedBorder
 
 
 @Composable
-fun LinksScreen() {
+fun LinksScreen(
+    viewModel: LinksScreenViewModel = hiltViewModel()
+) {
+
+    val context = LocalContext.current
+    val clipboardManager = LocalClipboardManager.current
 
     val rootContainerScrollState = rememberScrollState()
     val infoCardsContainerScrollState = rememberScrollState()
 
     var activeTab by remember { mutableStateOf(Tab.TOP_LINKS) }
+
+    viewModel.error?.let { error ->
+        AlertPopup(message = error) {
+            viewModel.onEvent(LinksScreenEvent.OnDismissError)
+        }
+    }
+
+    if (viewModel.loading) {
+        LoadingWidget()
+    }
 
     Column(
         modifier = Modifier
@@ -76,7 +103,7 @@ fun LinksScreen() {
                 .padding(top = 40.dp)
                 .padding(horizontal = 16.dp)
                 .padding(bottom = 44.dp),
-            title = "Dashboard"
+            title = "Dashboard",
         )
 
         Column(
@@ -97,7 +124,7 @@ fun LinksScreen() {
                     .fillMaxWidth()
                     .padding(top = 32.dp)
                     .padding(horizontal = 16.dp),
-                userName = "Ajay Manva"
+                userName = viewModel.userName
             )
 
             OverviewChart(
@@ -117,9 +144,9 @@ fun LinksScreen() {
                     .horizontalScroll(infoCardsContainerScrollState)
                     .padding(top = 20.dp)
                     .padding(horizontal = 16.dp),
-                todayClicks = 123L,
-                topLocation = "",
-                topSource = ""
+                todayClicks = viewModel.dashBoardData.todayClicks,
+                topLocation = viewModel.dashBoardData.topLocation,
+                topSource = viewModel.dashBoardData.topSource
             )
 
             TransparentActionButton(
@@ -146,7 +173,9 @@ fun LinksScreen() {
                 modifier = Modifier
                     .padding(top = 28.dp)
                     .padding(horizontal = 16.dp),
-                items = emptyList()
+                items = if (activeTab == Tab.TOP_LINKS) viewModel.topLinks else viewModel.recentLinks,
+                context = context,
+                clipboardManager = clipboardManager
             )
 
             TransparentActionButton(
@@ -157,7 +186,7 @@ fun LinksScreen() {
                     .height(48.dp),
                 iconResourceId = R.drawable.link,
                 title = "View all Links",
-                onClick = { }
+                onClick = {}
             )
 
             CardButton(
@@ -165,23 +194,25 @@ fun LinksScreen() {
                     .padding(top = 40.dp)
                     .padding(horizontal = 16.dp)
                     .fillMaxWidth()
+                    .clip(RoundedCornerShape(10.dp))
                     .border(2.dp, colorResource(R.color.light_green), RoundedCornerShape(10.dp))
                     .background(colorResource(R.color.light_green), RoundedCornerShape(10.dp))
+                    .clickable {  }
                     .padding(vertical = 20.dp, horizontal = 12.dp),
                 iconResourceId = R.drawable.wp,
-                title = "Chat with us",
-                onClick = { }
+                title = "Chat with us"
             )
             CardButton(
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxWidth()
-                    .border(2.dp, colorResource(R.color.light_green), RoundedCornerShape(10.dp))
-                    .background(colorResource(R.color.light_green), RoundedCornerShape(10.dp))
+                    .clip(RoundedCornerShape(10.dp))
+                    .border(1.dp, colorResource(R.color.light_blue), RoundedCornerShape(10.dp))
+                    .background(colorResource(R.color.lighter_blue), RoundedCornerShape(10.dp))
+                    .clickable {  }
                     .padding(vertical = 20.dp, horizontal = 12.dp),
                 iconResourceId = R.drawable.faq,
-                title = "Frequently Asked Questions",
-                onClick = { }
+                title = "Frequently Asked Questions"
             )
         }
 

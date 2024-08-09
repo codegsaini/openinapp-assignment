@@ -6,31 +6,31 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Link(
     @SerialName("url_id")
-    var id: Long,
+    var id: Long = 0,
     @SerialName("web_link")
-    var webLink: String,
+    var webLink: String = "",
     @SerialName("smart_link")
-    var smartLink: String,
+    var smartLink: String = "",
     @SerialName("title")
-    var title: String,
+    var title: String = "",
     @SerialName("total_clicks")
-    var totalClicks: Long,
+    var totalClicks: Long = 0,
     @SerialName("original_image")
-    var originalImage: String,
+    var originalImage: String = "",
     @SerialName("thumbnail")
-    var thumbnail: String,
+    var thumbnail: String? = null,
     @SerialName("times_ago")
-    var timesAgo: String,
+    var timesAgo: String = "",
     @SerialName("created_at")
-    var createdAt: String,
+    var createdAt: String = "",
     @SerialName("domain_id")
-    var domainId: String,
+    var domainId: String = "",
     @SerialName("url_prefix")
-    var urlPrefix: String,
+    var urlPrefix: String? = null,
     @SerialName("url_suffix")
-    var urlSuffix: String,
+    var urlSuffix: String = "",
     @SerialName("app")
-    var app: String,
+    var app: String = "",
     @SerialName("is_favourite")
-    var isFavourite: Boolean
+    var isFavourite: Boolean = false
 )

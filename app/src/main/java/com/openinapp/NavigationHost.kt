@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.openinapp.presentation.main.MainScreen
 import com.openinapp.presentation.main.links.LinksScreen
+import dagger.hilt.android.HiltAndroidApp
 
 sealed class Screen(val route: String) {
     data object MainScreen : Screen(route = "main_screen")

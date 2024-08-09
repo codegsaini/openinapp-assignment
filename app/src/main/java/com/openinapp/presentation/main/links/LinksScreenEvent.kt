@@ -1,4 +1,5 @@
 package com.openinapp.presentation.main.links
 
-class LinksScreenEvent {
+sealed class LinksScreenEvent {
+    data object OnDismissError: LinksScreenEvent()
 }

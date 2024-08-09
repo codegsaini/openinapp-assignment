@@ -3,6 +3,7 @@ package com.openinapp.presentation.main.links._components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
@@ -32,8 +33,7 @@ fun CardButton(
     modifier: Modifier = Modifier,
     @DrawableRes
     iconResourceId: Int,
-    title: String,
-    onClick: () -> Unit
+    title: String
 ) {
     Row(
         modifier = modifier,
@@ -49,7 +49,7 @@ fun CardButton(
             tint = Color.Unspecified
         )
         Text(
-            text = "Talk with us",
+            text = title,
             fontFamily = FontFamily.Figtree,
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,

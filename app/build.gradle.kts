@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -69,8 +71,30 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    /* List of additional libraries used */
+
+    // Compose Navigation for screen navigation
     implementation(libs.androidx.navigation.compose)
-    implementation(libs.kotlinx.serialization.json)
+
+
+    // MPAndroidChart for showing line chart
     implementation(libs.mpandroidchart)
 
+    // Hilt for dependency injection
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Ktor for api communication
+    implementation(libs.ktor.client.core)
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.content.negotiation)
+    // Kotlinx Serialization for casting Json object -> data class
+    implementation(libs.ktor.serialization.kotlinx)
+
+    // Datastore for storing small data in preference storage e.g token
+    implementation(libs.androidx.datastore.preferences)
+
+    // Coil for loading image from link
+    implementation(libs.coil.compose)
 }

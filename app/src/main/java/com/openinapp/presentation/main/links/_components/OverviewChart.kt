@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -103,9 +104,12 @@ fun OverviewChart(modifier: Modifier = Modifier) {
                     lineHeight = 12.sp
                 )
                 Icon(
-                    modifier = Modifier.size(15.dp).aspectRatio(1f),
-                    imageVector = Icons.Default.CheckCircle,
-                    contentDescription = null
+                    modifier = Modifier
+                        .size(16.dp)
+                        .aspectRatio(1f),
+                    painter = painterResource(R.drawable.time),
+                    contentDescription = null,
+                    tint = colorResource(R.color.text_secondary)
                 )
             }
         }
