@@ -20,18 +20,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.openinapp.R
 import com.openinapp.ui.theme.Figtree
+import java.util.Calendar
 
 @Composable
 fun GreetingView(
     modifier: Modifier = Modifier,
     userName: String
 ) {
+
+    val calendar = Calendar.getInstance()
+    val hourOfTheDay = calendar.get(Calendar.HOUR_OF_DAY)
+
+    val greeting =
+        if (hourOfTheDay < 12) "Good Morning"
+        else if (hourOfTheDay == 12) "Good Noon"
+        else if (hourOfTheDay < 16) "Good Afternoon"
+        else "Good Evening"
+
     Column(
         modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Text(
-            text = "Good Morning",
+            text = greeting,
             color = colorResource(R.color.text_secondary),
             fontSize = 16.sp,
             lineHeight = 24.sp,
