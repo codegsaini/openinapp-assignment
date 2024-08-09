@@ -1,4 +1,14 @@
-import androidx.compose.foundation.BorderStroke
+
+/*
+* Disclaimer: This extension function is utilized as it is from:
+* https://gist.github.com/DavidIbrahim/236dadbccd99c4fd328e53587df35a21
+*
+* Thanks DavidIbrahim (https://gist.github.com/DavidIbrahim)
+* for this wonderful utility of dashed border
+*
+* */
+
+////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
  * Copyright 2020 The Android Open Source Project
@@ -17,6 +27,7 @@ import androidx.compose.foundation.BorderStroke
  */
 
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawWithCache
