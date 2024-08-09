@@ -24,19 +24,17 @@ import androidx.compose.ui.unit.sp
 import com.openinapp.R
 
 @Composable
-fun TopBar() {
+fun TopBar(
+    modifier: Modifier = Modifier,
+    title: String
+) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.primary)
-            .padding(top = 40.dp)
-            .padding(horizontal = 16.dp)
-            .padding(bottom = 44.dp),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
-            text = "Dashboard",
+            text = title,
             fontWeight = FontWeight(600),
             fontSize = 24.sp,
             color = MaterialTheme.colorScheme.onPrimary,

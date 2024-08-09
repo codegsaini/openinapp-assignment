@@ -40,7 +40,7 @@ import com.openinapp.ui.theme.Figtree
 import kotlin.math.roundToInt
 
 @Composable
-fun OverviewChart() {
+fun OverviewChart(modifier: Modifier = Modifier) {
 
     val context = LocalContext.current
 
@@ -58,27 +58,19 @@ fun OverviewChart() {
     )
     val dataSet = LineDataSet(entries, null)
     dataSet.apply {
+        this.lineWidth = 6f
+        this.circleRadius = 3f
         this.color = MaterialTheme.colorScheme.primary.toArgb()
-        this.highLightColor = MaterialTheme.colorScheme.primary.toArgb()
         this.highlightLineWidth = 1f
+        this.highLightColor = MaterialTheme.colorScheme.primary.toArgb()
+        this.setDrawCircles(true)
         this.setCircleColors(MaterialTheme.colorScheme.primary.toArgb())
         this.setDrawCircleHole(false)
-        this.circleRadius = 3f
         this.setDrawFilled(true)
         this.fillDrawable = context.getDrawable(R.drawable.chart_background)
-        this.lineWidth = 6f
     }
 
-    Column(
-        modifier = Modifier
-            .padding(top = 24.dp)
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth()
-            .background(
-                colorResource(R.color.background_primary),
-                RoundedCornerShape(10.dp)
-            )
-    ) {
+    Column(modifier = modifier) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()

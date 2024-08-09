@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -17,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
@@ -30,32 +33,31 @@ import com.openinapp.ui.theme.Figtree
 fun BasicButton(
     modifier: Modifier = Modifier,
     @DrawableRes
-    iconResourceId: Int,
+    iconResourceId: Int? = null,
     title: String,
+    shape: Shape = RoundedCornerShape(10.dp),
+    border: BorderStroke? = null,
+    colors: ButtonColors = ButtonDefaults.buttonColors(),
     onClick: () -> Unit
 ) {
     Button(
-        modifier = modifier
-            .padding(top = 20.dp)
-            .padding(horizontal = 16.dp)
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(10.dp),
-        border = BorderStroke(1.dp, colorResource(R.color.gray)),
-        colors = ButtonDefaults.buttonColors(
-            contentColor = MaterialTheme.colorScheme.onBackground,
-            containerColor = Color.Transparent
-        ),
+        modifier = modifier,
+        shape = shape,
+        border = border,
+        colors = colors,
         onClick = { onClick() }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Icon(
-                modifier = Modifier.size(32.dp),
-                painter = painterResource(iconResourceId),
-                contentDescription = null
-            )
+            iconResourceId?.let {
+                Icon(
+                    modifier = Modifier.width(32.dp),
+                    painter = painterResource(iconResourceId),
+                    contentDescription = null
+                )
+            }
             Text(
                 text = title,
                 fontFamily = FontFamily.Figtree,

@@ -22,12 +22,12 @@ import com.openinapp.R
 import com.openinapp.ui.theme.Figtree
 
 @Composable
-fun GreetingView() {
+fun GreetingView(
+    modifier: Modifier = Modifier,
+    userName: String
+) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 32.dp)
-            .padding(horizontal = 16.dp),
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         Text(
@@ -43,7 +43,7 @@ fun GreetingView() {
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
-                text = "Ajay Manva",
+                text = userName,
                 color = colorResource(R.color.text_primary),
                 fontSize = 24.sp,
                 fontWeight = FontWeight.SemiBold,

@@ -28,31 +28,31 @@ import com.openinapp.R
 import com.openinapp.ui.theme.Figtree
 
 @Composable
-fun InfoCardsContainer() {
-    val infoCardsContainerScrollState = rememberScrollState()
+fun InfoCardsContainer(
+    modifier: Modifier = Modifier,
+    todayClicks: Long,
+    topLocation: String,
+    topSource: String
+) {
 
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .horizontalScroll(infoCardsContainerScrollState)
-            .padding(top = 20.dp)
-            .padding(horizontal = 16.dp),
+        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         InfoCard(
             iconResourceId = R.drawable.cursor,
             label = "Today's Clicks",
-            value = "123"
+            value = todayClicks.toString()
         )
         InfoCard(
             iconResourceId = R.drawable.location,
             label = "Top Location",
-            value = "Ahmedabad"
+            value = topLocation
         )
         InfoCard(
             iconResourceId = R.drawable.globe,
             label = "Top source",
-            value = "Instagram"
+            value = topSource
         )
     }
 }
