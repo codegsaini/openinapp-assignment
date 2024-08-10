@@ -2,7 +2,7 @@
 Hi, I am Gaurav Saini. Below is the assignment description which is assigned to me by the OpenInApp team on 08 Aug 2024.
 
 ### Screenshot and Clip
-<img src="https://github.com/user-attachments/assets/ab7336d1-5006-46d1-b2aa-cb70721899b2" width="300">
+<img src="https://github.com/user-attachments/assets/986a5e24-b131-43bd-9664-585d43b64f0a" width="300">
 
 ### CheckList for each point specified in the assignment
 - **UI Instructions**
