@@ -57,7 +57,6 @@ class LinksScreenViewModel @Inject constructor(
                 is Response.Failure -> onDataFetchFailure(response.error)
             }
         }
-        hideLoading()
     }
 
     private fun onDataFetchSuccess(data: DashboardData) {
@@ -65,10 +64,12 @@ class LinksScreenViewModel @Inject constructor(
             data = data,
         )
         hideError()
+        hideLoading()
     }
 
     private fun onDataFetchFailure(error: ResponseError) {
         showError(error.message)
+        hideLoading()
     }
 
     private fun showLoading() {
