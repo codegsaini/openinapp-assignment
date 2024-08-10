@@ -3,7 +3,7 @@ Hi, I am Gaurav Saini. Below is the assignment description which is assigned to 
 
 ### Screenshot and Clip
 <img src="https://github.com/user-attachments/assets/986a5e24-b131-43bd-9664-585d43b64f0a" width="300">
-
+ 
 ### CheckList for each point specified in the assignment
 - **UI Instructions**
 
@@ -24,6 +24,8 @@ Hi, I am Gaurav Saini. Below is the assignment description which is assigned to 
 7. [x] Codebase: The entire codebase is currently in XML. While adhering to this, you are given the flexibility to choose between XML and Jetpack Compose based on your preference, ensuring the delivery of a high-quality and precise design.
 8. [x] Networking Layer: Design the networking layer to accommodate both GET and POST API calls, ensuring robust communication with the specified API.
 
+### Known issue -
+- In MPAndroidChart library `lineDataSet.lineWidth` and `lineDataSet.circleRadius` behave as twice when page is re-rendered https://github.com/codegsaini/openinapp-assignment/blob/4061eaed98dda07385084a4045b733b6e3173949/app/src/main/java/com/openinapp/presentation/main/links/_components/OverviewChart.kt#L58-L59
 
 ### Tested on -
 - Samsung A23 API: 34 (Physical Device)
