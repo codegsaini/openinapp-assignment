@@ -23,11 +23,14 @@ class LinksScreenViewModel @Inject constructor(
     private val state : State<LinksScreenState> = _state
 
     init {
-        login()
-        getDashboardData()
+        viewModelScope.launch {
+            login()
+            getDashboardData()
+        }
+
     }
 
-    val userName get() = "Ajay Manva"
+    val userName get() = "Gaurav Saini"
     val topLinks get() = state.value.data.data.topLinks
     val recentLinks get() = state.value.data.data.recentLinks
     val favouriteLinks get() = state.value.data.data.favouriteLinks
@@ -43,20 +46,17 @@ class LinksScreenViewModel @Inject constructor(
     }
 
 
-    private fun login() {
-        viewModelScope.launch {
-            authRepository.login()
-        }
+    private suspend fun login() {
+        authRepository.login()
     }
 
-    private fun getDashboardData() {
+    private suspend fun getDashboardData() {
         showLoading()
-        viewModelScope.launch {
-            when (val response = dashboardRepository.getDashBoardData()) {
-                is Response.Success -> onDataFetchSuccess(response.data)
-                is Response.Failure -> onDataFetchFailure(response.error)
-            }
+        when (val response = dashboardRepository.getDashBoardData()) {
+            is Response.Success -> onDataFetchSuccess(response.data)
+            is Response.Failure -> onDataFetchFailure(response.error)
         }
+        hideLoading()
     }
 
     private fun onDataFetchSuccess(data: DashboardData) {
@@ -64,12 +64,10 @@ class LinksScreenViewModel @Inject constructor(
             data = data,
         )
         hideError()
-        hideLoading()
     }
 
     private fun onDataFetchFailure(error: ResponseError) {
         showError(error.message)
-        hideLoading()
     }
 
     private fun showLoading() {
