@@ -45,12 +45,12 @@ fun InfoCardsContainer(
         InfoCard(
             iconResourceId = R.drawable.location,
             label = "Top Location",
-            value = topLocation
+            value = topLocation.ifEmpty { "Not Available" }
         )
         InfoCard(
             iconResourceId = R.drawable.globe,
             label = "Top source",
-            value = topSource
+            value = topSource.ifEmpty { "Not Available" }
         )
     }
 }
