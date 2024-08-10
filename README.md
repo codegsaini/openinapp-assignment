@@ -23,3 +23,8 @@ Hi, I am Gaurav Saini. Below is the assignment description which is assigned to 
 6. [x] Navigation: Employ Jetpack Navigation for seamless navigation between fragments within the application.
 7. [x] Codebase: The entire codebase is currently in XML. While adhering to this, you are given the flexibility to choose between XML and Jetpack Compose based on your preference, ensuring the delivery of a high-quality and precise design.
 8. [x] Networking Layer: Design the networking layer to accommodate both GET and POST API calls, ensuring robust communication with the specified API.
+
+
+### Tested on -
+- Samsung A23 API: 34 (Physical Device)
+- Pixel 8 API: 29 (Virtual Device)
