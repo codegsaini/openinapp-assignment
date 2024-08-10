@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -39,8 +40,7 @@ fun AppContent() {
         Surface(
             modifier = Modifier
                 .fillMaxSize()
-                // ToDo('Change background color using theme colors')
-                .background(Color.White),
+                .background(MaterialTheme.colorScheme.background),
 
             // Entry point
             content = { App() }
